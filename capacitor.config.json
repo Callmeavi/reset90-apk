@@ -1,0 +1,8 @@
+{
+  "appId": "com.nikitasain.reset90",
+  "appName": "Reset 90",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

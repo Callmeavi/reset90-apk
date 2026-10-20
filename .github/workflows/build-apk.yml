@@ -1,0 +1,70 @@
+name: Build Reset90 Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Sync Capacitor Android
+        run: npx cap sync android
+
+      - name: Build Debug APK with Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Rename APK for Distribution
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk Reset90-HabitTracker.apk
+
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Reset90-HabitTracker-APK
+          path: Reset90-HabitTracker.apk
+          if-no-files-found: error
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          name: "Reset 90 Habit Tracker v1.0.0"
+          body: |
+            ### Reset 90 Habit Tracker Android App
+            
+            - Complete offline habit tracker
+            - Local storage persistence
+            - Clean mobile UI & dark/light theme support
+            
+            **Download the APK below and install directly on your Android phone!**
+          files: Reset90-HabitTracker.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
