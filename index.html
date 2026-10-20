@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf4ee">
+  <title>Reset 90 | A little better, every day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="core.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#today" aria-label="Reset 90 home"><span class="brand-mark"><i data-lucide="sprout"></i></span>reset<span class="brand-number">90</span><span class="brand-dot">.</span></a>
+    <div class="sidebar-label">YOUR PERSONAL RESET</div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active" data-view="today"><i data-lucide="sun"></i><span>My day</span><i class="nav-arrow" data-lucide="arrow-up-right"></i></button>
+      <button class="nav-item" data-view="journey"><i data-lucide="calendar-days"></i><span>90-day journey</span></button>
+      <button class="nav-item" data-view="insights"><i data-lucide="chart-no-axes-combined"></i><span>My insights</span></button>
+    </nav>
+    <div class="sidebar-challenge"><span class="eyebrow">ONE DAY AT A TIME</span><div class="serif">Small things.<br>Real change.</div><div class="mini-track"><span id="side-progress"></span></div><div id="side-caption" class="muted small"></div></div>
+    <div class="sidebar-bottom"><button class="nav-item" id="settings-button"><i data-lucide="sliders-horizontal"></i><span>Challenge settings</span></button><div class="local-note"><span class="status-dot"></span><span id="save-status">Saved on this device</span></div></div>
+  </aside>
+  <main>
+    <header class="topbar"><div><span class="topbar-label">A LITTLE BETTER, EVERY DAY</span></div><div class="topbar-right"><span id="today-label"></span><span class="avatar" aria-label="Your personal space">YOU</span></div></header>
+    <div class="page">
+      <section class="intro"><div><div class="eyebrow" id="page-eyebrow">YOUR NEXT CHAPTER</div><h1 id="page-title">Make room for you.</h1><p id="page-subtitle">A fresh start. Small promises. A day that's yours.</p></div><button class="button secondary" id="manage-button"><i data-lucide="plus"></i>Manage habits</button></section>
+      <section class="challenge-banner" aria-label="Challenge progress"><div class="banner-copy"><span class="eyebrow">THE 90-DAY RESET</span><h2>Progress, not perfection.</h2><p id="challenge-dates"></p><div class="banner-progress"><span id="banner-fill"></span></div><div class="banner-footer"><span id="challenge-day"></span><span id="challenge-remaining"></span></div></div><div class="banner-photo" role="img" aria-label="Sunlight falling on fresh green leaves"><span class="photo-caption">GROW AT YOUR OWN PACE</span></div></section>
+      <section class="stat-grid" aria-label="Challenge overview">
+        <div class="stat"><span class="stat-icon green"><i data-lucide="circle-check"></i></span><div><span class="stat-label">Habit completion</span><strong id="stat-completion">0<span>%</span></strong><span class="stat-detail">Across elapsed days</span></div></div>
+        <div class="stat"><span class="stat-icon coral"><i data-lucide="flame"></i></span><div><span class="stat-label">Perfect-day streak</span><strong id="stat-streak">0<span>days</span></strong><span class="stat-detail" id="best-streak">Best: 0 days</span></div></div>
+        <div class="stat"><span class="stat-icon lilac"><i data-lucide="check-check"></i></span><div><span class="stat-label">Promises kept</span><strong id="stat-done">0</strong><span class="stat-detail">Every little win counts</span></div></div>
+        <div class="stat"><span class="stat-icon yellow"><i data-lucide="flag"></i></span><div><span class="stat-label">Journey progress</span><strong id="stat-days">1<span>/ 90 days</span></strong><span class="stat-detail" id="end-date"></span></div></div>
+      </section>
+      <section id="today-view" class="view">
+        <div class="daily-layout"><section class="daily-main"><div class="section-heading"><div><div class="eyebrow" id="selected-date"></div><h2 id="selected-heading">Your daily rituals</h2></div><div class="day-nav"><button class="icon-button" id="previous-day" title="Previous day" aria-label="Previous day"><i data-lucide="chevron-left"></i></button><button class="today-button" id="go-today">Today</button><button class="icon-button" id="next-day" title="Next day" aria-label="Next day"><i data-lucide="chevron-right"></i></button></div></div>
+        <div class="week-strip" id="week-strip" aria-label="Choose a day"></div>
+        <div class="habit-toolbar"><div class="category-tabs" role="group" aria-label="Filter habits" id="category-tabs"></div><span class="habit-count" id="habit-count"></span></div>
+        <div id="future-notice" class="notice" hidden>This day is still ahead. Your check-in opens on this date.</div>
+        <div class="habit-list" id="habit-list"></div>
+        <div class="legend"><span><span class="legend-dot done"></span>Done</span><span><span class="legend-dot missed"></span>Missed</span><span><span class="legend-dot blank"></span>Not logged</span><button id="clear-day" class="text-button">Clear this day</button></div>
+        </section>
+        <aside class="daily-aside"><section class="summary-panel"><div class="section-heading"><h3>Daily balance</h3><i data-lucide="circle-dot"></i></div><div class="donut" id="daily-donut"><div><strong id="daily-percent">0%</strong><span>complete</span></div></div><h3 id="daily-message">A little intention goes a long way.</h3><div class="daily-totals"><div><strong id="daily-done">0</strong><span>Done</span></div><div><strong id="daily-missed">0</strong><span>Missed</span></div><div><strong id="daily-open">10</strong><span>Not logged</span></div></div></section>
+        <section class="reflection"><div class="section-heading"><h3>A moment to reflect</h3><i data-lucide="notebook-pen"></i></div><label for="daily-note">What's on your mind today?</label><textarea id="daily-note" maxlength="5000" placeholder="A small win, a hard moment, something to remember..."></textarea><div class="reflection-footer"><span id="note-status">Just for you.</span><i data-lucide="lock-keyhole"></i></div></section>
+        <div class="gentle-note"><i data-lucide="heart"></i><p>A missed habit is a moment,<br>not your whole story.</p></div></aside></div>
+      </section>
+      <section id="journey-view" class="view" hidden><div class="section-heading"><div><div class="eyebrow">THE BIG PICTURE</div><h2>Your 90 little steps</h2></div><div class="legend"><span><span class="legend-dot done"></span>100%</span><span><span class="legend-dot partial"></span>In progress</span><span><span class="legend-dot missed"></span>Missed only</span></div></div><div id="journey-grid" class="journey-grid"></div><div class="milestones" id="milestones"></div></section>
+      <section id="insights-view" class="view" hidden><div class="insight-layout"><section><div class="section-heading"><div><div class="eyebrow">CONSISTENCY OVER TIME</div><h2>Your weekly rhythm</h2></div></div><div id="weekly-chart" class="weekly-chart"></div><div class="chart-caption">Habit completion by challenge week · elapsed days only</div></section><section class="insight-summary"><h3>Your check-ins</h3><div id="checkin-summary"></div></section></div><div class="section-heading habit-breakdown-heading"><div><div class="eyebrow">HABIT BY HABIT</div><h2>Where you're growing</h2></div></div><div id="habit-breakdown" class="habit-breakdown"></div></section>
+      <footer class="page-footer"><span>90 days. A thousand small beginnings.</span><span>Made for your own pace.<i data-lucide="sprout"></i></span></footer>
+    </div>
+  </main>
+  <dialog id="settings-dialog"><form id="settings-form"><div class="dialog-heading"><div><div class="eyebrow">MAKE IT YOURS</div><h2>Challenge settings</h2></div><button type="button" class="icon-button" data-close="settings-dialog" aria-label="Close settings"><i data-lucide="x"></i></button></div><label for="start-date">Challenge start date</label><input type="date" id="start-date" required><p class="field-note">Changing the date keeps check-ins attached to their day number.</p><button class="button primary" type="submit"><i data-lucide="check"></i>Save start date</button></form><hr><div class="section-heading"><h3>Your habits</h3><span id="manage-count" class="muted small"></span></div><div id="manage-list"></div><button class="button secondary full" id="add-habit"><i data-lucide="plus"></i>Add a habit</button><hr><h3>Your data</h3><p class="field-note">Stored in this browser, not an account. Back up before clearing browser data or switching devices. Icons, photos and fonts need internet access.</p><div class="backup-actions"><button class="button secondary" id="export-data"><i data-lucide="download"></i>Export backup</button><button class="button secondary" id="import-data"><i data-lucide="upload"></i>Import backup</button></div><input type="file" id="import-file" accept="application/json,.json" hidden><button class="text-button danger" id="reset-data">Reset all challenge data</button></dialog>
+  <dialog id="habit-dialog"><form id="habit-form"><div class="dialog-heading"><h2 id="habit-dialog-title">A new small promise</h2><button type="button" class="icon-button" data-close="habit-dialog" aria-label="Close habit editor"><i data-lucide="x"></i></button></div><input type="hidden" id="habit-id"><label for="habit-name">Habit name</label><input id="habit-name" maxlength="70" placeholder="e.g. Stretch and unwind" required><label for="habit-target">Your daily goal</label><input id="habit-target" maxlength="100" placeholder="e.g. 15 minutes of stretching" required><label for="habit-category">Category</label><select id="habit-category"><option>Movement</option><option>Self-care</option><option>Nutrition</option><option>Mind</option><option>Other</option></select><div class="form-actions"><button type="button" class="button secondary" data-close="habit-dialog">Cancel</button><button class="button primary" type="submit"><i data-lucide="check"></i>Save habit</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

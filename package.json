@@ -1,0 +1,10 @@
+{
+  "name": "reset90",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A personal 90-day reset challenge with local habit tracking and analytics",
+  "scripts": {
+    "test": "node --test core.test.cjs",
+    "check": "node --check core.js && node --check app.js"
+  }
+}
